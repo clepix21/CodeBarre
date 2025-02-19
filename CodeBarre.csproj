@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQL\script_sql.cs" />
     <EmbeddedResource Include="fenetres\main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>

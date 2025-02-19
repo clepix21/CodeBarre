@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace CodeBarre
 {
@@ -14,6 +12,21 @@ namespace CodeBarre
         [STAThread]
         static void Main()
         {
+            string connectionString = "Data Source=..\\..\\SQL\\bd.db";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    Console.WriteLine("Connexion réussie !");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erreur de connexion : " + ex.Message);
+                }
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new main());

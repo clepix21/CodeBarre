@@ -16,14 +16,18 @@ namespace CodeBarre
 
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
-                try
+                conn.Open();
+                string query = "SELECT EAN FROM Produits";
+
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
-                    conn.Open();
-                    Console.WriteLine("Connexion réussie !");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Erreur de connexion : " + ex.Message);
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Console.WriteLine($"EAN: {reader["EAN"]}");
+                        }
+                    }
                 }
             }
 
